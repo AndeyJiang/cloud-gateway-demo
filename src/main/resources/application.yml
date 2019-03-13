@@ -1,0 +1,66 @@
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: com.andey.dao
+spring:
+  datasource:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          initial-size: 3
+          jdbc-interceptors: ConnectionState;SlowQueryReport(threshold=50)
+          max-idle: 5
+          max-wait: 10000
+          min-idle: 2
+          password: mmyy12345
+          time-between-eviction-runs-millis: 18800
+          type: com.alibaba.druid.pool.DruidDataSource
+          url: jdbc:mysql://localhost:3306/oauth2?useUnicode=true&autoReconnect=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
+          username: root
+          validation-query: SELECT 1
+#spring:
+#  application:
+#    name: cloud-gateway
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: service_customer
+#          uri: https://www.baidu.com
+#          #---------执行顺序，按匹配的优先级处理handler
+#          order: 0
+#          predicates:
+#          - Path=/
+#          filters:
+#          - name: RequestRateLimiter
+#            args:
+#              key-resolver: "#{@ipKeyResolver}"
+#              redis-rate-limiter.replenishRate: 1
+#              redis-rate-limiter.burstCapacity: 5
+  # -------
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+server:
+  port: 8090
+
+
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+#          thread:
+#            timeoutInMilliseconds: 3000
+#  shareSecurityContext: true
+#  # -------
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: debug
+#    com.windmt.filter: debug
+
+
